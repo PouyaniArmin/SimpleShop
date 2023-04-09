@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardContrller;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductManagementController;
+use App\Http\Controllers\SingleProductContrller;
 use App\Http\Controllers\TagManagementController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Routing\Router;
@@ -26,8 +27,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/product',[ProductController::class,'index']);
-Route::get('/contact',[ContactController::class,'index']);
+Route::get('/product', [ProductController::class, 'index']);
+Route::get('/contact', [ContactController::class, 'index']);
 
 
 Route::middleware([
@@ -39,20 +40,23 @@ Route::middleware([
         return view('dashboard.homeDashboard');
     })->name('dashboard');
 });
-// cart
+// singel product
+Route::get('/product/name', [SingleProductContrller::class, 'index']);
 
-Route::get('/cart',[CartController::class,'index']);
+// cart
+Route::get('/cart', [CartController::class, 'index']);
+
 
 /** Admin Panel */
 // product managemnt
-Route::get('/dashboard/product',[ProductManagementController::class,'index']);
-Route::get('/dashboard/product/create',[ProductManagementController::class,'create']);
+Route::get('/dashboard/product', [ProductManagementController::class, 'index']);
+Route::get('/dashboard/product/create', [ProductManagementController::class, 'create']);
 // category managemnt
-Route::get('/dashboard/category',[CategoryManagementController::class,'index']);
-Route::get('dashboard/product/create',[CategoryManagementController::class,'create']);
+Route::get('/dashboard/category', [CategoryManagementController::class, 'index']);
+Route::get('dashboard/product/create', [CategoryManagementController::class, 'create']);
 // tag managemnt
-Route::get('/dashboard/tag',[TagManagementController::class,'index']);
-Route::get('dashboard/tag/create',[TagManagementController::class,'create']);
+Route::get('/dashboard/tag', [TagManagementController::class, 'index']);
+Route::get('dashboard/tag/create', [TagManagementController::class, 'create']);
 // user managemnt
-Route::get('/dashboard/user',[UserManagementController::class,'index']);
-Route::get('/dashboard/user/1',[UserManagementController::class,'info']);
+Route::get('/dashboard/user', [UserManagementController::class, 'index']);
+Route::get('/dashboard/user/1', [UserManagementController::class, 'info']);

@@ -41,3 +41,21 @@
     margin-left: auto;
     margin-right: auto;
 }
+/* single product page */
+.single-product img{
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.single-product .carousel-control-prev-icon,
+.carousel-control-next-icon{
+    background-color: gray;
+}
+.single-product .carousel-control-next-icon,
+.carousel-control-prev-icon
+{
+    background-color: gray;
+}
