@@ -1,24 +1,7 @@
 @extends('dashboard')
 @section('contentDashboard')
 <div class="container py-4">
-    <h1 class="fs-3">user</h1>
-    <div class="new-product p-4">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-8">
-                        <h5 class="fs-6">Create new user</h5>
-                    </div>
-                    <div class="col-4 d-flex justify-content-end">
-                        <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                            </svg></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1 class="fs-2">Users</h1>
     <!-- list product -->
     <h3 class="fs-4 py-4 ms-3 text-primary">List user</h3>
     <div class="container" style="width: 900px">
@@ -28,17 +11,21 @@
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Created</th>
                     <th scope="col">Permission</th>
                     <th scope="col">Management</th>
                 </tr>
             </thead>
             <tbody>
-                @for($i=0;$i<=5;$i++) <tr>
+                @foreach($users as $user) 
+                <tr>
                     <th scope="row">
                         <input type="checkbox">
                     </th>
-                    <td>tag name</td>
-                    <td>example@gmail.com</td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->created_at->diffForHumans()}}</td>
+                   <!-- permission not work  -->
                     <td>user</td>
                     <td>
                         <div class="row">
@@ -56,8 +43,8 @@
                             </div>
                         </div>
                     </td>
-                    </tr>
-                    @endfor
+                </tr>
+                   @endforeach
             </tbody>
         </table>
         <div class="container py-2">
