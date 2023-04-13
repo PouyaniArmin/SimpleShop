@@ -51,12 +51,18 @@ Route::get('/cart', [CartController::class, 'index']);
 // product managemnt
 Route::get('/dashboard/product', [ProductManagementController::class, 'index']);
 Route::get('/dashboard/product/create', [ProductManagementController::class, 'create']);
+Route::post('/dashboard/product/create', [ProductManagementController::class, 'insert'])->name('product.insert');
+
 // category managemnt
 Route::get('/dashboard/category', [CategoryManagementController::class, 'index']);
-Route::get('dashboard/product/create', [CategoryManagementController::class, 'create']);
+Route::get('/dashboard/category/create', [CategoryManagementController::class, 'create']);
+Route::post('/dashboard/category/create',[CategoryManagementController::class,'store']);
+
 // tag managemnt
 Route::get('/dashboard/tag', [TagManagementController::class, 'index']);
 Route::get('dashboard/tag/create', [TagManagementController::class, 'create']);
+Route::post('dashboard/tag/create',[TagManagementController::class,'store']);
+
 // user managemnt
 Route::get('/dashboard/user', [UserManagementController::class, 'index']);
 Route::get('/dashboard/user/1', [UserManagementController::class, 'info']);

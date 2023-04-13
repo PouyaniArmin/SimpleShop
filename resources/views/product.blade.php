@@ -3,6 +3,7 @@
 <!-- product list-->
 <div class="py-4" style="max-width:98%;">
     <div class="row">
+        <!-- side bar -->
         <div class="col-3 col-md-3 col-md-3 sticky-top product-sidebar-left">
             <div class="contianer">
                 <div class="text-center pt-3">
@@ -54,12 +55,15 @@
                 <!-- best items products-->
                 <h4 class="text-muted py-2">Best Items</h4>
                 <div class="row row-cols-1 row-cols-md-3 g-4">
+                    @foreach($products as $data)
+                    
                     <div class="col">
                         <div class="card">
-                            <img src="{{asset('images/01.jpeg')}}" class="card-img-top product-best-img" alt="...">
+                            <img src="{{asset($data->pic)}}" class="card-img-top product-best-img" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text text-truncate">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <h5 class="card-title">{{$data->title}}</h5>
+                                <p class="card-text text-truncate">{{$data->description}}</p>
+                                <p class="card-text text-truncate">{{$data->price}} $</p>
                                 <a class="icon-link icon-link-hover" href="#">
                                     Read More
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
@@ -69,36 +73,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="{{asset('images/iphone.jpeg')}}" class="card-img-top product-best-img" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text text-truncate">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <a class="icon-link icon-link-hover" href="#">
-                                    Read More
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="{{asset('images/lap.png')}}" class="card-img-top product-best-img" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text text-truncate">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                                <a class="icon-link icon-link-hover" href="#">
-                                    Read More
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <!-- new Products -->
                 <h3 class="text-muted py-4">New Products</h3>

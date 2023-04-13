@@ -1,7 +1,13 @@
 @extends('dashboard')
 @section('contentDashboard')
 <div class="container py-4">
-    <h1 class="fs-3">tag</h1>
+    <h1 class="fs-3">Tag</h1>
+
+    @if(session()->has('success'))
+    <div class="alert alert-success text-center">
+        {{ session()->get('success') }}
+    </div>
+    @endif
     <div class="new-product p-4">
         <div class="card">
             <div class="card-body">
