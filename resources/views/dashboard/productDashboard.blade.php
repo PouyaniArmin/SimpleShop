@@ -40,13 +40,14 @@
                 </tr>
             </thead>
             <tbody>
-                @for($i=0;$i<=5;$i++) <tr>
+                @foreach($products as $data)
+                <tr>
                     <th scope="row">
                         <input type="checkbox">
                     </th>
-                    <td>product name</td>
-                    <td>product price</td>
-                    <td>2023 spe 21</td>
+                    <td>{{$data->title}}</td>
+                    <td>{{$data->price}}</td>
+                    <td>{{$data->created_at->diffForHumans()}}</td>
                     <td>
                         <div class="row">
                             <div class="col-2">
@@ -63,8 +64,8 @@
                             </div>
                         </div>
                     </td>
-                    </tr>
-                    @endfor
+                </tr>
+                @endforeach
             </tbody>
         </table>
         <div class="container py-2">

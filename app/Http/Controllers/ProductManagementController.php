@@ -13,7 +13,8 @@ class ProductManagementController extends Controller
 {
     public function index()
     {
-        return view('dashboard.productDashboard');
+        $products=Product::all();
+        return view('dashboard.productDashboard',compact('products'));
     }
     public function create()
     {

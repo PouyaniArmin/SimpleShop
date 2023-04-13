@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['title','price','pic','description'];
+    protected $fillable = ['title','price','pic','description','created_at'];
     public function picture(){
         return $this->belongsTo('Picture');
     }
