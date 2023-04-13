@@ -2,7 +2,7 @@
 @section('contentDashboard')
 <div class="container py-4">
     <h1 class="fs-3">Category</h1>
-    
+
     @if(session()->has('success'))
     <div class="alert alert-success text-center">
         {{ session()->get('success') }}
@@ -38,12 +38,14 @@
                 </tr>
             </thead>
             <tbody>
-                @for($i=0;$i<=5;$i++) <tr>
+                <!--  -->
+                @foreach($categories as $category)
+                <tr>
                     <th scope="row">
                         <input type="checkbox">
                     </th>
-                    <td>category name</td>
-                    <td>2023 spe 21</td>
+                    <td>{{$category->title}}</td>
+                    <td>{{$category->created_at->diffForHumans()}}</td>
                     <td>
                         <div class="row">
                             <div class="col-2">
@@ -60,8 +62,8 @@
                             </div>
                         </div>
                     </td>
-                    </tr>
-                    @endfor
+                </tr>
+                @endforeach
             </tbody>
         </table>
         <div class="container py-2">

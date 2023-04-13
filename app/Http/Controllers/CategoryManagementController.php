@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class CategoryManagementController extends Controller
 {
     public function index(){
-        return view('dashboard.categoryDashboard');
+        $categories=Category::all();
+        return view('dashboard.categoryDashboard',compact('categories'));
     }
     public function create(){   
         return view('dashboard.category.create');
