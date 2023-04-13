@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductManagementController;
 use App\Http\Controllers\SingleProductContrller;
 use App\Http\Controllers\TagManagementController;
 use App\Http\Controllers\UserManagementController;
+use App\Models\Product;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,12 @@ Route::get('/cart', [CartController::class, 'index']);
 Route::get('/dashboard/product', [ProductManagementController::class, 'index']);
 Route::get('/dashboard/product/create', [ProductManagementController::class, 'create']);
 Route::post('/dashboard/product/create', [ProductManagementController::class, 'insert'])->name('product.insert');
+/** update product */
+Route::get('/dashboard/product/update/{id}',[ProductManagementController::class,'edit'])->name('product.edit');
+Route::post('/dashboard/product/update/{id}',[ProductManagementController::class,'update'])->name('product.update');
+/** delete */
+Route::get('/dashboard/product/delete/{id}',[ProductManagementController::class,'delete'])->name('product.delete');
+
 
 // category managemnt
 Route::get('/dashboard/category', [CategoryManagementController::class, 'index']);
