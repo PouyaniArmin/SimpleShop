@@ -74,6 +74,14 @@ Route::get('/dashboard/category/delete/{id}',[CategoryManagementController::clas
 Route::get('/dashboard/tag', [TagManagementController::class, 'index']);
 Route::get('dashboard/tag/create', [TagManagementController::class, 'create']);
 Route::post('dashboard/tag/create',[TagManagementController::class,'store']);
+/** update product */
+Route::get('/dashboard/tag/update/{id}',[TagManagementController::class,'edit'])->name('tag.edit');
+Route::post('/dashboard/tag/update/{id}',[TagManagementController::class,'update'])->name('tag.update');
+/** delete */
+Route::get('/dashboard/tag/delete/{id}',[TagManagementController::class,'delete'])->name('tag.delete');
+
+
+
 
 // user managemnt
 Route::get('/dashboard/user', [UserManagementController::class, 'index']);
