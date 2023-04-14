@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class CategoryManagementController extends Controller
 {
     public function index(){
-        $categories=Category::all();
+        $categories=Category::paginate(5);
         return view('dashboard.categoryDashboard',compact('categories'));
     }
     public function create(){   
@@ -31,5 +31,24 @@ class CategoryManagementController extends Controller
         return redirect('dashboard/category');
         
     }
+    // update category
+    public function edit($id){
+        $category=Category::find($id);
+        return view('dashboard.category.update',compact('category'));
+    }
 
+    public function update(Request $request,$id){
+        $category=Category::findOrFail($id);
+        $body=$request->validate(['title'=>['required']]);
+        $title=$body['title'];
+        $category->update(['title'=>$title]);
+        session()->flash('success', 'Suuecssfully Update Category');
+        return redirect('dashboard/category');
+    }
+
+    public function delete($id){
+        $category=Category::find($id)->delete();
+        session()->flash('success', 'Suuecssfully Remove Category');
+        return redirect('dashboard/category');
+    }
 }

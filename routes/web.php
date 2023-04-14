@@ -64,6 +64,11 @@ Route::get('/dashboard/product/delete/{id}',[ProductManagementController::class,
 Route::get('/dashboard/category', [CategoryManagementController::class, 'index']);
 Route::get('/dashboard/category/create', [CategoryManagementController::class, 'create']);
 Route::post('/dashboard/category/create',[CategoryManagementController::class,'store']);
+/** update category */
+Route::get('/dashboard/category/update/{id}',[CategoryManagementController::class,'edit'])->name('category.edit');
+Route::post('/dashboard/category/update/{id}',[CategoryManagementController::class,'update'])->name('category.update');
+/** delete */
+Route::get('/dashboard/category/delete/{id}',[CategoryManagementController::class,'delete'])->name('category.delete');
 
 // tag managemnt
 Route::get('/dashboard/tag', [TagManagementController::class, 'index']);
