@@ -10,7 +10,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = ['title','price','pic','description','created_at'];
-    public function picture(){
-        return $this->belongsTo('Picture');
+    public function pictures(){
+        return $this->hasMany(Picture::class,'product_id');
     }
 }
