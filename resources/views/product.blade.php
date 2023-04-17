@@ -56,10 +56,10 @@
                 <h4 class="text-muted py-2">Best Items</h4>
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     @foreach($products as $data)
-                    
+
                     <div class="col">
                         <div class="card">
-                            <img src="{{asset($data->pic)}}" class="card-img-top product-best-img" alt="...">
+                            <img src="{{asset($data['pictures'][0]['path'])}}" class="card-img-top product-best-img" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{$data->title}}</h5>
                                 <p class="card-text text-truncate">{{$data->description}}</p>
