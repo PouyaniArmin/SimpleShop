@@ -7,6 +7,7 @@ use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session as FacadesSession;
 
 class ProductManagementController extends Controller
@@ -27,21 +28,26 @@ class ProductManagementController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'price' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'description' => 'required',
+            'description' => 'required'
         ]);
-
         $title = $request['title'];
         $price = $request['price'];
-        $imageName = time() . '.' . $request->image->extension();
         $description = $request['description'];
-        $path = 'images/' . $imageName;
-        $request->image->move(public_path('images'), $imageName);
         $product->title = $title;
         $product->price = $price;
-        $product->pic = $path;
         $product->description = $description;
         $product->save();
+// images 
+        $request->validate(['image' => 'required']);
+        foreach ($request->file('image') as $image) {
+            $upload_image_name = time() . '-' . $image->getClientOriginalName();
+            $image->move(public_path('images'), $upload_image_name);
+            $name[] = $upload_image_name;
+            $pic = new Picture(['path' => '/images' . $upload_image_name]);
+            $product->pictures()->save($pic);
+        }
+
+        // flash message redirect back
         session()->flash('success', 'Suuecssfully Add Product');
         return redirect('dashboard/product');
     }
@@ -70,10 +76,10 @@ class ProductManagementController extends Controller
         return redirect('dashboard/product');
     }
     // delete product
-    public function delete($id){
+    public function delete($id)
+    {
         Product::find($id)->delete();
         session()->flash('success', 'Suuecssfully Remove Product');
         return redirect('dashboard/product');
     }
-
 }
