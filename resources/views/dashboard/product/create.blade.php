@@ -20,7 +20,6 @@
             </div>
             
             
-        <div class="row g-3">
             <div class="mb-3 py-4">
                 <label for="formFile" class="form-label">Upload Image</label>
                 <input multiple="multiple" class="form-control" name="image[]" type="file" id="formFile">

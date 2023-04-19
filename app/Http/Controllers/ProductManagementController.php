@@ -37,13 +37,13 @@ class ProductManagementController extends Controller
         $product->price = $price;
         $product->description = $description;
         $product->save();
-// images 
+        // images 
         $request->validate(['image' => 'required']);
         foreach ($request->file('image') as $image) {
             $upload_image_name = time() . '-' . $image->getClientOriginalName();
             $image->move(public_path('images'), $upload_image_name);
             $name[] = $upload_image_name;
-            $pic = new Picture(['path' => '/images' . $upload_image_name]);
+            $pic = new Picture(['path' => 'images/' . $upload_image_name]);
             $product->pictures()->save($pic);
         }
 
@@ -56,7 +56,7 @@ class ProductManagementController extends Controller
 
     public function edit($id)
     {
-        $product = Product::find($id);
+        $product = Product::with('pictures')->find($id);
         return view('dashboard.product.update', compact('product'));
     }
     public function update(Request $request, $id)
@@ -72,6 +72,15 @@ class ProductManagementController extends Controller
             'price' => $body['price'],
             'description' => $body['description']
         ]);
+        // images 
+        $request->validate(['image' => 'required']);
+        foreach ($request->file('image') as $image) {
+            $upload_image_name = time() . '-' . $image->getClientOriginalName();
+            $image->move(public_path('images'), $upload_image_name);
+            $name[] = $upload_image_name;
+            $pic = new Picture(['path' => 'images/' . $upload_image_name]);
+            $product->pictures()->save($pic);
+        }
         session()->flash('success', 'Suuecssfully Update Product');
         return redirect('dashboard/product');
     }
@@ -81,5 +90,18 @@ class ProductManagementController extends Controller
         Product::find($id)->delete();
         session()->flash('success', 'Suuecssfully Remove Product');
         return redirect('dashboard/product');
+    }
+
+    // remove uploade image product
+
+    public function removeImage($id)
+    {
+        $url = url()->previous();
+        $e = explode('/', $url);
+        $end = end($e);
+
+        Picture::find($id)->delete();
+        session()->flash('success', 'Suuecssfully Remove Product');
+        return redirect("dashboard/product/update/$end");
     }
 }

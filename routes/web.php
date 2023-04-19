@@ -59,6 +59,7 @@ Route::post('/dashboard/product/update/{id}',[ProductManagementController::class
 /** delete */
 Route::get('/dashboard/product/delete/{id}',[ProductManagementController::class,'delete'])->name('product.delete');
 
+Route::get('/dashboard/product/remove-image/{id}',[ProductManagementController::class,'removeImage'])->name('product.remove.image');
 
 // category managemnt
 Route::get('/dashboard/category', [CategoryManagementController::class, 'index']);
