@@ -39,16 +39,24 @@ class CategoryManagementController extends Controller
 
     public function update(Request $request,$id){
         $category=Category::findOrFail($id);
-        $body=$request->validate(['title'=>['required']]);
+        $body=$request->validate(['title'=>'required','image'=>'required']);
         $title=$body['title'];
-        $category->update(['title'=>$title]);
+
+        $imageName=time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'),$imageName);
+        $path='images/'.$imageName;
+        
+        $category->update(['title'=>$title,'pic'=>$path]);
         session()->flash('success', 'Suuecssfully Update Category');
         return redirect('dashboard/category');
     }
+
+    
 
     public function delete($id){
         $category=Category::find($id)->delete();
         session()->flash('success', 'Suuecssfully Remove Category');
         return redirect('dashboard/category');
     }
+
 }
