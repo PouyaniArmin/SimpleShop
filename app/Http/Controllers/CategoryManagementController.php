@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class CategoryManagementController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
         $categories=Category::paginate(5);
         return view('dashboard.categoryDashboard',compact('categories'));
