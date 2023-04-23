@@ -59,3 +59,25 @@
 {
     background-color: gray;
 }
+
+/* single product new */
+.small-img-group{
+    display: flex;
+    justify-content: space-between;
+}
+.small-img-col{
+    flex-basis: 24%;
+    cursor: pointer;
+}
+
+.sproduct input{
+    width: 50px;
+    height: 30px;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.sproduct input:focus{
+    outline: none;
+}
