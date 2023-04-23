@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class UserManagementController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         $users=User::all();
         return view('dashboard.userDashboard',compact('users'));

@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Session as FacadesSession;
 
 class ProductManagementController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $products = Product::paginate(5);
