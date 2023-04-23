@@ -42,7 +42,7 @@ Route::middleware([
     })->name('dashboard');
 });
 // singel product
-Route::get('/product/name', [SingleProductContrller::class, 'index']);
+Route::get('/product/{id}', [SingleProductContrller::class, 'index'])->name('product.info');
 
 // cart
 Route::get('/cart', [CartController::class, 'index']);
