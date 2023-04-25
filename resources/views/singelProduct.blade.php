@@ -20,18 +20,15 @@
             </div>
 
             <div class="col-lg-6 col-md-12 col-sm-12">
-                <h3 class="my-4">{{$product->title}}</h3>
+            <h3 class="my-4">{{$product->title}}</h3>
 
                 <h4 class="mt-5">Product Details</h4>
                 <span>{{$product->description}}</span>
                 <div class="py-4">
-                    <input type="number" value="1">
-                    <button class="btn btn-dark">Add To Cart</button>
-
+                    <a class="btn btn-outline-dark">Add To Cart</a>
+                    <a href=""></a>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
