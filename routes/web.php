@@ -46,6 +46,10 @@ Route::get('/product/{id}', [SingleProductContrller::class, 'index'])->name('pro
 
 // cart
 Route::get('/cart', [CartController::class, 'index']);
+Route::get('/cart/{id}',[CartController::class,'addToCart'])->name('cart.add');
+Route::get('plus-cart/{id}',[CartController::class,'plusCart'])->name('cart.plus-cart');
+Route::get('minus-cart/{id}',[CartController::class,'minusCart'])->name('cart.minus-cart');
+Route::get('remove-cart/{id}',[CartController::class,'removeCart'])->name('cart.remove-cart');
 
 
 /** Admin Panel */
