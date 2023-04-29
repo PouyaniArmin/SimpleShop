@@ -1,16 +1,13 @@
-<?php
+ <?php 
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryManagementController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\DashboardContrller;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductManagementController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SingleProductContrller;
-use App\Http\Controllers\TagManagementController;
 use App\Http\Controllers\UserManagementController;
-use App\Models\Product;
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,24 +25,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+     return view('dashboard'); 
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+ Route::middleware('auth')->group(function () { 
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
+
 Route::get('/product', [ProductController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
 
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard.homeDashboard');
-    })->name('dashboard');
-});
 // singel product
 Route::get('/product/{id}', [SingleProductContrller::class, 'index'])->name('product.info');
 
 // cart
-Route::get('/cart', [CartController::class, 'index']);
+Route::get('/cart', [CartControllerontroller::class, 'index']);
 Route::get('/cart/{id}',[CartController::class,'addToCart'])->name('cart.add');
 Route::get('plus-cart/{id}',[CartController::class,'plusCart'])->name('cart.plus-cart');
 Route::get('minus-cart/{id}',[CartController::class,'minusCart'])->name('cart.minus-cart');
@@ -68,7 +68,7 @@ Route::get('/dashboard/product/remove-image/{id}',[ProductManagementController::
 // category managemnt
 Route::get('/dashboard/category', [CategoryManagementController::class, 'index']);
 Route::get('/dashboard/category/create', [CategoryManagementController::class, 'create']);
-Route::post('/dashboard/category/create',[CategoryManagementController::class,'store']);
+ Route::post('/dashboard/category/create',[CategoryManagementController::class,'store']); 
 /** update category */
 Route::get('/dashboard/category/update/{id}',[CategoryManagementController::class,'edit'])->name('category.edit');
 Route::post('/dashboard/category/update/{id}',[CategoryManagementController::class,'update'])->name('category.update');
@@ -76,7 +76,7 @@ Route::post('/dashboard/category/update/{id}',[CategoryManagementController::cla
 Route::get('/dashboard/category/delete/{id}',[CategoryManagementController::class,'delete'])->name('category.delete');
 
 // tag managemnt
-Route::get('/dashboard/tag', [TagManagementController::class, 'index']);
+ Route::get('/dashboard/tag', [TagManagementController::class, 'index']);
 Route::get('dashboard/tag/create', [TagManagementController::class, 'create']);
 Route::post('dashboard/tag/create',[TagManagementController::class,'store']);
 /** update product */
@@ -91,3 +91,5 @@ Route::get('/dashboard/tag/delete/{id}',[TagManagementController::class,'delete'
 // user managemnt
 Route::get('/dashboard/user', [UserManagementController::class, 'index']);
 Route::get('/dashboard/user/1', [UserManagementController::class, 'info']);
+
+// 
