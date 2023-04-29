@@ -45,7 +45,7 @@ Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/product/{id}', [SingleProductContrller::class, 'index'])->name('product.info');
 
 // cart
-Route::get('/cart', [CartControllerontroller::class, 'index']);
+Route::get('/cart', [CartController::class, 'index']);
 Route::get('/cart/{id}',[CartController::class,'addToCart'])->name('cart.add');
 Route::get('plus-cart/{id}',[CartController::class,'plusCart'])->name('cart.plus-cart');
 Route::get('minus-cart/{id}',[CartController::class,'minusCart'])->name('cart.minus-cart');
