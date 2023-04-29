@@ -1,4 +1,4 @@
 @extends(layouts.main)
 @section('content')
-<h1>Welcome  Big body </h1>
+<h1>Welcome </h1>
 @endsection
